@@ -138,6 +138,12 @@ Votre navigateur s'ouvrira automatiquement sur l'application Streamlit qui affic
 - Un marqueur représentant le taxi qui se déplace en temps réel
 - Les dernières coordonnées reçues sous la carte
 
+## Mes Setup notes
+
+Lors de la mise en place du projet, nous avons rencontré plusieurs difficultés techniques liées à la configuration de Kafka. Nous avons d’abord tenté d’utiliser Kafka en mode KRaft (sans ZooKeeper), mais celui-ci refusait de démarrer correctement sur notre environnement Windows : erreurs de cluster ID, impossibilité d’initialiser les logs et plantages récurrents au lancement du broker. Après plusieurs essais et vérifications des logs, nous avons décidé de revenir à la version classique de Kafka basée sur ZooKeeper, qui s’est avérée beaucoup plus stable et simple à faire fonctionner.
+
+Nous avons également dû ajuster le Java PATH pour que Kafka puisse se lancer, recréer plusieurs fois notre environnement virtuel Python à cause de conflits de dépendances, et résoudre l’erreur “NoBrokersAvailable” lorsque le broker n’était pas encore démarré ou lorsque le topic n’était pas créé. En testant chaque composant séparément (ZooKeeper → Kafka → producer → consumer) et en analysant attentivement les messages d’erreur, nous avons progressivement stabilisé tout l’environnement. Ces étapes nous ont permis de mieux comprendre le fonctionnement interne de Kafka et d’obtenir une configuration totalement opérationnelle.
+
 ## Fonctionnalités
 
 ### Producer (`producer/producer.py`)
