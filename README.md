@@ -171,6 +171,23 @@ Votre navigateur s'ouvrira automatiquement sur l'application Streamlit qui affic
 - **Folium** : Bibliothèque Python pour créer des cartes Leaflet
 - **streamlit-folium** : Intégration Folium dans Streamlit
 
+## Screenshots
+Lancement de Zookeeper
+<img width="1696" height="455" alt="zookeeper" src="https://github.com/user-attachments/assets/c0f7297c-7a1c-4ddc-9375-f680acff9f9c" />
+
+Lancement de Kafka
+<img width="1687" height="277" alt="kafka" src="https://github.com/user-attachments/assets/0ce67b40-b172-43e0-936e-d7f6f83ed770" />
+
+Lancement du producer
+<img width="1166" height="732" alt="producer" src="https://github.com/user-attachments/assets/8b0050b2-f6fc-4211-b405-6807e5df3428" />
+
+Lancement de Streamlit
+<img width="1374" height="352" alt="streamlit" src="https://github.com/user-attachments/assets/115d607c-f1d7-463a-8bfc-889e64a1776f" />
+<img width="1116" height="605" alt="1streamlite" src="https://github.com/user-attachments/assets/5d82284a-893d-4578-9c49-b32ccd7f5c96" />
+<img width="1686" height="737" alt="2streamlite" src="https://github.com/user-attachments/assets/5ed2ebe7-391f-4047-8856-6b5a18c9f793" />
+<img width="1532" height="226" alt="3treamlite" src="https://github.com/user-attachments/assets/1b417081-d016-485c-bec5-02ac7e8041c7" />
+<img width="1722" height="699" alt="4streamlite" src="https://github.com/user-attachments/assets/5193b5b2-cfc8-4cd9-8c4e-571fffd348ca" />
+
 ## Documentation complète
 
 Pour plus de détails sur l'installation, la configuration et le dépannage, consultez le guide complet :
