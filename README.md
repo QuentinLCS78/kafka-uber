@@ -14,8 +14,41 @@ Nous avons choisi Apache Kafka car c’est l’outil le plus adapté pour gérer
 
 Dans un écosystème Big Data, Kafka joue le rôle de “canal d’ingestion” : il récupère des flux continus de données (logs, capteurs, positions GPS, transactions…) et les transmet en temps réel aux autres outils de la plateforme. Les données envoyées dans Kafka peuvent ensuite être traitées par Spark Streaming ou Flink, stockées dans HDFS ou Hive, analysées par des moteurs SQL, ou visualisées dans des dashboards. Kafka sert donc de couche centrale de streaming permettant de connecter facilement la collecte, le traitement et l’analyse des données au sein d’une architecture Big Data moderne.
 
-## Challenges rencontrés
+## Exemple minimal fonctionnel
 
+Cet exemple montre le fonctionnement le plus simple possible de Kafka :
+un producer envoie un message “hello”, et un consumer le lit immédiatement.
+
+Mini Producer :
+
+from kafka import KafkaProducer
+
+producer = KafkaProducer(bootstrap_servers="localhost:9092")
+producer.send("test_topic", b"hello")
+producer.flush()
+
+print("Message envoyé : hello")
+
+
+Mini Consumer :
+
+from kafka import KafkaConsumer
+
+consumer = KafkaConsumer(
+    "test_topic",
+    bootstrap_servers="localhost:9092",
+    auto_offset_reset="earliest"
+)
+
+for message in consumer:
+    print("Message reçu :", message.value.decode())
+
+
+Commande pour créer le topic minimal :
+
+kafka-topics.bat --create --topic test_topic --bootstrap-server localhost:9092
+
+## Challenges rencontrés
 
 Les principaux challenges rencontrés ont été liés à la configuration de Kafka et aux échanges entre le producer et le consumer. Nous avons notamment eu des erreurs “NoBrokersAvailable” lorsque Kafka n’était pas correctement démarré, des problèmes de PATH Java, ainsi que des difficultés à faire communiquer Streamlit avec le flux Kafka en temps réel. Nous avons aussi dû ajuster la fréquence d’envoi des positions GPS pour éviter les blocages, et corriger plusieurs erreurs dues au virtualenv ou au topic non créé. En suivant les logs, en recréant proprement le venv, en vérifiant le broker et en testant séparément chaque composant, nous avons pu résoudre ces problèmes progressivement.
 
