@@ -6,6 +6,19 @@ Ce projet simule un système de suivi de taxi en temps réel utilisant **Apache 
 
 Un **producer** Python envoie les positions GPS d'un taxi qui se déplace dans Paris, ces positions sont transportées par **Kafka**, et un **consumer** Streamlit les consomme pour afficher la position du taxi sur une carte interactive en temps réel.
 
+## Choix de technologie
+
+Nous avons choisi Apache Kafka car c’est l’outil le plus adapté pour gérer des données en continu et en temps réel, comme les positions GPS du taxi. Kafka permet d’envoyer et de consommer des messages avec une très faible latence, de manière fiable, scalable et indépendante entre producer et consumer. Il peut stocker les messages même si l’application Streamlit n’est pas encore lancée, et il s’intègre parfaitement dans un écosystème Big Data moderne (Spark, Hadoop, Hive, etc.). C’est donc la solution idéale pour un projet de type “Mini Uber”.
+
+## Kafka dans l’écosystème Big Data
+
+Dans un écosystème Big Data, Kafka joue le rôle de “canal d’ingestion” : il récupère des flux continus de données (logs, capteurs, positions GPS, transactions…) et les transmet en temps réel aux autres outils de la plateforme. Les données envoyées dans Kafka peuvent ensuite être traitées par Spark Streaming ou Flink, stockées dans HDFS ou Hive, analysées par des moteurs SQL, ou visualisées dans des dashboards. Kafka sert donc de couche centrale de streaming permettant de connecter facilement la collecte, le traitement et l’analyse des données au sein d’une architecture Big Data moderne.
+
+## Challenges rencontrés
+
+
+Les principaux challenges rencontrés ont été liés à la configuration de Kafka et aux échanges entre le producer et le consumer. Nous avons notamment eu des erreurs “NoBrokersAvailable” lorsque Kafka n’était pas correctement démarré, des problèmes de PATH Java, ainsi que des difficultés à faire communiquer Streamlit avec le flux Kafka en temps réel. Nous avons aussi dû ajuster la fréquence d’envoi des positions GPS pour éviter les blocages, et corriger plusieurs erreurs dues au virtualenv ou au topic non créé. En suivant les logs, en recréant proprement le venv, en vérifiant le broker et en testant séparément chaque composant, nous avons pu résoudre ces problèmes progressivement.
+
 ## Architecture
 
 ```
